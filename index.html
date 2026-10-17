@@ -1,0 +1,361 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Total Spectrum Designs | Furniture Catalogue</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1c2b2d; --pine:#2f5d50; --paper:#f2f4f0; --card:#fff; --line:#d9dfd8;
+  --brass:#e3a92b; --muted:#5d6b6a; --wa:#1fa855;
+  --r:14px; --shadow:0 1px 2px rgba(28,43,45,.08),0 8px 24px rgba(28,43,45,.06);
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:Figtree,system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.55}
+h1,h2,h3,.logo{font-family:"Bricolage Grotesque",Figtree,sans-serif;line-height:1.1}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
+.wrap{width:min(1180px,100% - 2.5rem);margin-inline:auto}
+
+/* header */
+.site-header{position:sticky;top:0;z-index:20;background:var(--ink);color:#fff}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;padding:.85rem 0;gap:1rem}
+.logo{font-weight:800;font-size:1.25rem;color:#fff;text-decoration:none}
+.logo span{color:var(--brass)}
+.head-actions{display:flex;gap:.6rem;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:.4rem;border:0;border-radius:999px;padding:.6rem 1.1rem;font-weight:700;cursor:pointer;text-decoration:none;transition:transform .15s,background .15s}
+.btn:active{transform:scale(.97)}
+.btn-wa{background:var(--wa);color:#fff}
+.btn-wa:hover{background:#188f48}
+.btn-ghost{background:rgba(255,255,255,.12);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.22)}
+.count{background:var(--brass);color:var(--ink);border-radius:999px;padding:0 .5rem;font-size:.8rem}
+
+/* hero */
+.hero{background:var(--ink);color:#fff;padding:3.5rem 0 4.5rem;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-90px;top:-90px;width:380px;height:380px;border-radius:50%;
+  background:conic-gradient(var(--brass) 0 33%,var(--pine) 0 66%,#7ea99c 0);opacity:.9}
+.hero .wrap{position:relative;z-index:1}
+.hero h1{font-size:clamp(2.4rem,6vw,4.4rem);font-weight:800;max-width:11em}
+.hero p{max-width:34em;margin:1.2rem 0 1.8rem;color:#c9d6d3;font-size:1.1rem}
+
+/* payment mode switch */
+.modes{display:inline-flex;background:rgba(255,255,255,.1);border-radius:999px;padding:.25rem}
+.modes button{border:0;background:none;color:#fff;padding:.55rem 1.1rem;border-radius:999px;cursor:pointer;font-weight:600}
+.modes button[aria-pressed="true"]{background:var(--brass);color:var(--ink)}
+.mode-note{font-size:.95rem!important;margin:.9rem 0 0!important;color:#9fb3af!important}
+
+/* toolbar */
+.toolbar{margin-top:-1.8rem;position:relative;z-index:2}
+.toolbar .wrap{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:1rem;display:grid;gap:.9rem}
+.toolbar-row{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center}
+.search{flex:1 1 220px;border:1.5px solid var(--line);border-radius:10px;padding:.6rem .9rem;background:var(--paper)}
+select{border:1.5px solid var(--line);border-radius:10px;padding:.6rem .8rem;background:var(--paper)}
+.filters{display:flex;flex-wrap:wrap;gap:.5rem}
+.chip{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:.4rem .95rem;cursor:pointer;font-weight:600;font-size:.95rem}
+.chip:hover{border-color:var(--pine)}
+.chip[aria-pressed="true"]{background:var(--pine);border-color:var(--pine);color:#fff}
+.toggle{display:flex;align-items:center;gap:.4rem;font-size:.95rem;cursor:pointer}
+
+/* grid */
+.section-heading{display:flex;justify-content:space-between;align-items:end;flex-wrap:wrap;gap:.5rem;margin:2.5rem 0 1.2rem}
+.section-heading h2{font-size:clamp(1.7rem,3.5vw,2.4rem)}
+.section-hint{color:var(--muted)}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.2rem;padding-bottom:3rem}
+.card{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+.thumb{aspect-ratio:4/3;display:grid;place-items:center;position:relative;cursor:pointer;border:0;width:100%;
+  font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:2.6rem;color:rgba(255,255,255,.85)}
+.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tag{position:absolute;left:.7rem;top:.7rem;background:#fff;color:var(--ink);font-size:.75rem;font-weight:700;padding:.15rem .6rem;border-radius:999px;font-family:Figtree,sans-serif}
+.heart{position:absolute;right:.6rem;top:.6rem;width:2.2rem;height:2.2rem;border-radius:50%;border:0;background:#fff;cursor:pointer;font-size:1.1rem;display:grid;place-items:center}
+.heart[aria-pressed="true"]{background:var(--brass)}
+.card-body{padding:1rem 1.1rem 1.2rem;display:flex;flex-direction:column;gap:.35rem;flex:1}
+.card h3{font-size:1.15rem}
+.cat{color:var(--muted);font-size:.9rem}
+.price{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.5rem;margin-top:auto;padding-top:.6rem}
+.price small{font-family:Figtree,sans-serif;font-weight:600;font-size:.85rem;color:var(--muted)}
+.price-sub{font-size:.85rem;color:var(--muted)}
+.card .btn{justify-content:center;margin-top:.7rem;background:var(--ink);color:#fff}
+.card .btn:hover{background:var(--wa)}
+.empty{grid-column:1/-1;text-align:center;padding:3rem 1rem;color:var(--muted)}
+
+/* modal */
+dialog{border:0;border-radius:var(--r);padding:0;width:min(520px,92vw);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+dialog::backdrop{background:rgba(28,43,45,.6)}
+.modal-body{padding:1.5rem;display:grid;gap:.7rem}
+.modal-body .thumb{border-radius:10px;cursor:default}
+.modal-actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.4rem}
+.modal-actions .btn-close{background:var(--paper);color:var(--ink)}
+.kv{display:grid;grid-template-columns:1fr auto;gap:.3rem 1rem;border-top:1px solid var(--line);padding-top:.7rem}
+.kv span:nth-child(even){font-weight:700;text-align:right}
+
+/* notice + footer */
+.notice{background:var(--pine);color:#fff;padding:3rem 0}
+.notice .wrap{display:flex;flex-wrap:wrap;gap:1rem 3rem;align-items:center;justify-content:space-between}
+.notice h2{font-size:1.8rem}
+.notice p{max-width:32em;color:#d3e4df}
+footer{background:var(--ink);color:#9fb3af;padding:1.8rem 0;font-size:.9rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem}
+
+/* toast */
+.toast{position:fixed;left:50%;bottom:1.5rem;transform:translate(-50%,150%);background:var(--ink);color:#fff;padding:.7rem 1.2rem;border-radius:999px;transition:transform .25s;z-index:50}
+.toast.show{transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media (max-width:560px){.hero::after{width:220px;height:220px}.head-actions .btn-wa{display:none}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="#">Total <span>Spectrum</span> Designs</a>
+    <div class="head-actions">
+      <button class="btn btn-ghost" id="wishlist-btn" type="button">Saved <span class="count" id="saved-count">0</span></button>
+      <a class="btn btn-wa" id="header-whatsapp" href="#" target="_blank" rel="noopener">WhatsApp us</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Quality furniture, paid your way.</h1>
+    <p>Beds, bedroom suites, wardrobes, storage and dining sets. Pick how you want to pay and every price below updates.</p>
+    <div class="modes" id="modes" role="group" aria-label="Payment option">
+      <button type="button" data-mode="cash" aria-pressed="true">Cash</button>
+      <button type="button" data-mode="layby" aria-pressed="false">Lay-by</button>
+      <button type="button" data-mode="rto" aria-pressed="false">Rent to own</button>
+    </div>
+    <p class="mode-note" id="mode-note"></p>
+  </div>
+</section>
+
+<div class="toolbar">
+  <div class="wrap">
+    <div class="toolbar-row">
+      <input class="search" id="search" type="search" placeholder="Search beds, wardrobes, dining…" aria-label="Search products">
+      <select id="sort" aria-label="Sort products">
+        <option value="featured">Sort: Featured</option>
+        <option value="low">Price: low to high</option>
+        <option value="high">Price: high to low</option>
+        <option value="az">Name: A to Z</option>
+      </select>
+      <label class="toggle"><input type="checkbox" id="only-saved"> Saved only</label>
+    </div>
+    <nav class="filters" id="filters" aria-label="Filter products by category"></nav>
+  </div>
+</div>
+
+<main class="wrap">
+  <section class="section-heading">
+    <div>
+      <h2>Furniture catalogue</h2>
+      <p class="section-hint" id="result-count"></p>
+    </div>
+    <p class="section-hint">Select a product to enquire on WhatsApp.</p>
+  </section>
+  <div class="product-grid" id="product-grid"></div>
+</main>
+
+<section class="notice">
+  <div class="wrap">
+    <div>
+      <h2>Flexible payment options</h2>
+      <p>Prices shown for Lay-by and Rent to own are estimates. Contact us to confirm prices, stock, payment terms and delivery.</p>
+    </div>
+    <a class="btn btn-wa" id="notice-whatsapp" href="#" target="_blank" rel="noopener">Ask about terms</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>&copy; <span id="year"></span> Total Spectrum Designs</p>
+    <p>Prices and availability may change. Please enquire before ordering.</p>
+  </div>
+</footer>
+
+<dialog id="quick" aria-label="Product details"><div class="modal-body" id="quick-body"></div></dialog>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ============ SETTINGS: edit these ============ */
+const WHATSAPP_NUMBER = "27000000000";   // country code + number, no + or spaces
+const LAYBY_DEPOSIT = 0.20;              // 20% deposit
+const LAYBY_MONTHS = 6;
+const RTO_MONTHS = 24;
+const RTO_MARKUP = 0.45;                 // extra cost over 24 months
+
+/* ============ PRODUCTS: 20 slots. Add "img":"photos/bed1.jpg" to show a photo ============ */
+const PRODUCTS = [
+  {name:"Classic Double Bed",           cat:"Beds",     price:3499,  color:"#2f5d50"},
+  {name:"Queen Base Set",               cat:"Beds",     price:4299,  color:"#3d6e8a"},
+  {name:"King Storage Bed",             cat:"Beds",     price:6899,  color:"#7a4f3a"},
+  {name:"Single Kids Bed",              cat:"Beds",     price:1999,  color:"#c47a2c"},
+  {name:"Bunk Bed",                     cat:"Beds",     price:3999,  color:"#5b4b8a"},
+  {name:"3-Piece Bedroom Suite",        cat:"Bedroom Suites", price:8999,  color:"#8a3d4a"},
+  {name:"5-Piece Bedroom Suite",        cat:"Bedroom Suites", price:13499, color:"#2d4a5e"},
+  {name:"Compact Suite",                cat:"Bedroom Suites", price:6499,  color:"#4f7a5a"},
+  {name:"Pedestal Pair",                cat:"Bedroom Suites", price:1299,  color:"#6b5a3d"},
+  {name:"2-Door Wardrobe",              cat:"Wardrobes",price:2899,  color:"#3c4a52"},
+  {name:"3-Door Wardrobe",              cat:"Wardrobes",price:4199,  color:"#7a6a3a"},
+  {name:"Sliding Door Wardrobe",        cat:"Wardrobes",price:7499,  color:"#50607a"},
+  {name:"Corner Wardrobe",              cat:"Wardrobes",price:5299,  color:"#8a5a3a"},
+  {name:"Chest of Drawers",             cat:"Storage",  price:2399,  color:"#4a6a6a"},
+  {name:"TV Unit",                      cat:"Storage",  price:2699,  color:"#5a3d5e"},
+  {name:"Bookshelf",                    cat:"Storage",  price:1499,  color:"#8a7a3a"},
+  {name:"Shoe Cabinet",                 cat:"Storage",  price:1199,  color:"#3a5a4a"},
+  {name:"4-Seater Dining Set",          cat:"Dining",   price:4599,  color:"#a0522d"},
+  {name:"6-Seater Dining Set",          cat:"Dining",   price:7299,  color:"#2f4a6a"},
+  {name:"Kitchen Pantry Cupboard",      cat:"Dining",   price:3299,  color:"#6a4a3a"}
+];
+
+/* ============ STATE ============ */
+const $ = id => document.getElementById(id);
+const state = {mode:"cash", cat:"All", q:"", sort:"featured", onlySaved:false,
+  saved:new Set(JSON.parse(safeGet("tsd-saved") || "[]"))};
+
+function safeGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+function safeSet(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+
+/* ============ FUNCTIONS ============ */
+const money = n => "R" + Math.round(n).toLocaleString("en-ZA");
+
+function priceFor(p){
+  if(state.mode === "layby"){
+    const monthly = p.price*(1-LAYBY_DEPOSIT)/LAYBY_MONTHS;
+    return {main:money(monthly), unit:"/month", sub:`${money(p.price*LAYBY_DEPOSIT)} deposit, ${LAYBY_MONTHS} months`};
+  }
+  if(state.mode === "rto"){
+    const monthly = p.price*(1+RTO_MARKUP)/RTO_MONTHS;
+    return {main:money(monthly), unit:"/month", sub:`${RTO_MONTHS} months, no deposit`};
+  }
+  return {main:money(p.price), unit:"", sub:"Cash price"};
+}
+
+function waLink(text){
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+}
+function enquiryText(p){
+  const label = {cash:"Cash", layby:"Lay-by", rto:"Rent to own"}[state.mode];
+  return `Hi Total Spectrum Designs, I'm interested in the ${p.name} (${money(p.price)}). I'd like to pay by ${label}. Is it in stock?`;
+}
+
+function visibleProducts(){
+  const q = state.q.trim().toLowerCase();
+  let list = PRODUCTS.map((p,i)=>({...p,id:i})).filter(p =>
+    (state.cat==="All" || p.cat===state.cat) &&
+    (!q || (p.name+" "+p.cat).toLowerCase().includes(q)) &&
+    (!state.onlySaved || state.saved.has(p.id)));
+  if(state.sort==="low")  list.sort((a,b)=>a.price-b.price);
+  if(state.sort==="high") list.sort((a,b)=>b.price-a.price);
+  if(state.sort==="az")   list.sort((a,b)=>a.name.localeCompare(b.name));
+  return list;
+}
+
+function thumbHTML(p){
+  const initials = p.name.split(" ").slice(0,2).map(w=>w[0]).join("");
+  return `${p.img ? `<img src="${p.img}" alt="${p.name}" loading="lazy">` : initials}`;
+}
+
+function renderFilters(){
+  const cats = ["All", ...new Set(PRODUCTS.map(p=>p.cat))];
+  $("filters").innerHTML = cats.map(c =>
+    `<button class="chip" type="button" data-cat="${c}" aria-pressed="${c===state.cat}">${c}</button>`).join("");
+}
+
+function renderGrid(){
+  const list = visibleProducts();
+  $("result-count").textContent = `${list.length} of ${PRODUCTS.length} products`;
+  $("product-grid").innerHTML = list.length ? list.map(p => {
+    const pr = priceFor(p), saved = state.saved.has(p.id);
+    return `<article class="card">
+      <button class="thumb" type="button" data-view="${p.id}" style="background:${p.color}" aria-label="View ${p.name}">
+        ${thumbHTML(p)}<span class="tag">${p.cat}</span>
+      </button>
+      <button class="heart" type="button" data-save="${p.id}" aria-pressed="${saved}" aria-label="${saved?"Remove from":"Save to"} saved">${saved?"★":"☆"}</button>
+      <div class="card-body">
+        <h3>${p.name}</h3>
+        <p class="price">${pr.main}<small>${pr.unit}</small></p>
+        <p class="price-sub">${pr.sub}</p>
+        <a class="btn" href="${waLink(enquiryText(p))}" target="_blank" rel="noopener">Enquire on WhatsApp</a>
+      </div>
+    </article>`;
+  }).join("") : `<p class="empty">No products match. Clear the search or pick another category.</p>`;
+  $("saved-count").textContent = state.saved.size;
+}
+
+function renderNote(){
+  $("mode-note").textContent = {
+    cash:"Showing full cash prices.",
+    layby:`Showing monthly amount after a ${LAYBY_DEPOSIT*100}% deposit, over ${LAYBY_MONTHS} months. Estimate only.`,
+    rto:`Showing monthly rent over ${RTO_MONTHS} months. Estimate only.`}[state.mode];
+  document.querySelectorAll("#modes button").forEach(b=>b.setAttribute("aria-pressed", b.dataset.mode===state.mode));
+}
+
+function toast(msg){
+  const t = $("toast"); t.textContent = msg; t.classList.add("show");
+  clearTimeout(toast.t); toast.t = setTimeout(()=>t.classList.remove("show"), 1800);
+}
+
+function toggleSave(id){
+  state.saved.has(id) ? state.saved.delete(id) : state.saved.add(id);
+  safeSet("tsd-saved", JSON.stringify([...state.saved]));
+  toast(state.saved.has(id) ? "Saved" : "Removed from saved");
+  renderGrid();
+}
+
+function openQuick(id){
+  const p = PRODUCTS[id];
+  const rows = ["cash","layby","rto"].map(m => {
+    const keep = state.mode; state.mode = m; const pr = priceFor(p); state.mode = keep;
+    return `<span>${{cash:"Cash",layby:"Lay-by",rto:"Rent to own"}[m]}</span><span>${pr.main}${pr.unit}</span>`;
+  }).join("");
+  $("quick-body").innerHTML = `
+    <div class="thumb" style="background:${p.color}">${thumbHTML(p)}</div>
+    <h3>${p.name}</h3><p class="cat">${p.cat}</p>
+    <div class="kv">${rows}</div>
+    <div class="modal-actions">
+      <a class="btn btn-wa" href="${waLink(enquiryText(p))}" target="_blank" rel="noopener">Enquire on WhatsApp</a>
+      <button class="btn btn-close" type="button" id="close-quick">Close</button>
+    </div>`;
+  $("quick").showModal();
+}
+
+function shareSaved(){
+  if(!state.saved.size){ toast("Save a few products first"); return; }
+  const names = [...state.saved].map(i=>"- "+PRODUCTS[i].name).join("\n");
+  window.open(waLink("Hi Total Spectrum Designs, I'd like to enquire about:\n"+names), "_blank", "noopener");
+}
+
+/* ============ EVENTS ============ */
+$("filters").addEventListener("click", e=>{
+  const b = e.target.closest("[data-cat]"); if(!b) return;
+  state.cat = b.dataset.cat; renderFilters(); renderGrid();
+});
+$("modes").addEventListener("click", e=>{
+  const b = e.target.closest("[data-mode]"); if(!b) return;
+  state.mode = b.dataset.mode; renderNote(); renderGrid();
+});
+$("product-grid").addEventListener("click", e=>{
+  const v = e.target.closest("[data-view]"), s = e.target.closest("[data-save]");
+  if(s) toggleSave(+s.dataset.save); else if(v) openQuick(+v.dataset.view);
+});
+$("search").addEventListener("input", e=>{ state.q = e.target.value; renderGrid(); });
+$("sort").addEventListener("change", e=>{ state.sort = e.target.value; renderGrid(); });
+$("only-saved").addEventListener("change", e=>{ state.onlySaved = e.target.checked; renderGrid(); });
+$("wishlist-btn").addEventListener("click", shareSaved);
+$("quick").addEventListener("click", e=>{
+  if(e.target === $("quick") || e.target.id === "close-quick") $("quick").close();
+});
+
+/* ============ INIT ============ */
+const generalLink = waLink("Hi Total Spectrum Designs, I'd like to enquire about your furniture.");
+$("header-whatsapp").href = generalLink;
+$("notice-whatsapp").href = generalLink;
+$("year").textContent = new Date().getFullYear();
+renderFilters(); renderNote(); renderGrid();
+</script>
+</body>
+</html>
